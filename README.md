@@ -1,5 +1,40 @@
 # Cloud-Pub-Sub
 
+## Create a Function
+  <ul>
+  <b>Create a Directory and move in that directory</b>
+  <p>mkdir gcf_hello<br>cd gcf_hello</p>
+  <b>create and open index.js</b>
+  <p>nano index.js</p>
+  </ul>
+  
+## Create a cloud storage bucket
+  <ul>
+  <p>gsutil mb -p [Project ID] gs://{bucket name}</p>
+  </ul>
+  
+## Deploy your function
+  <ul>
+  <b>Deploy the function to a pub/sub topic named hello_world</b>
+  <p>gcloud functions deploy helloWorld \<br>
+  --stage-bucket [BUCKET_NAME] \<br>
+  --trigger-topic hello_world \<br>
+    --runtime nodejs8</p>
+  <b>Verify the status of the function.</b>
+  <p>gcloud functions describe helloWorld</p>
+  </ul>
+  
+## Test the function
+  <ul>
+  <b>Create a message test of the function.</b>
+  <p>DATA=$(printf 'Hello World!'|base64) && gcloud functions call helloWorld --data '{"data":"'$DATA'"}'</p>
+  </ul>
+  
+## View logs
+  <ul>
+  <p>gcloud functions logs read helloWorld</p>
+  </ul>
+  
 ## Pub/Sub topics
   <ul>
   <b>Create a pub/sub Topic called Arish</b>
